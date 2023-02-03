@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            Loading and parsing CVS Data
+        </title>
+        <script src="https://unpkg.com/d3@5.15.0/dist/d3.min.js"></script>
+        <style>
+            pre {
+                font-size: 7em;
+
+            }
+
+            
+        </style>
+
+    </head>
+    <body>
+        <pre id="message-container"></pre>
+        <script>
+            const cvsurl = 'https://gist.githubusercontent.com/jzmoolman/88ab8c9540d3590fc9305ad714051aba/raw/gistfile1.txt'
+
+            d3.csv(cvsurl).then(data => {
+                    let message = '';
+                    message = message + Math.round(data.length / 1024) + " kb\n";
+                    message = message + data.length + " rows\n";
+                    message = message + data.columns.length + " columns\n";
+                    document.getElementById('message-container').textContent = message;
+            })
+            
+            
+            
+            //  with Fetch, async and await
+            // const fetchText = async (url) => {
+            //     const response = await fetch(url);
+            //     return await response.text();
+            //     // console.log(text);
+            // }
+            // fetchText(cvsurl).then(
+                
+            //     text=> { 
+            //         const data = d3.csvParse(text);
+            //         let message = '';
+            //         message = message + Math.round(data.length/1024) + " kb\n";
+            //         message = message + data.length + " rows\n";
+            //         message = message + data.columns.length + " columns\n";
+            //         document.getElementById('message-container').textContent = message;
+
+            //     }
+            // );
+
+            // fetch(url)
+            //     .then(response=> {
+            //     response.text().then(text=> {
+            //         console.log(text);
+            //     })
+            // })
+        </script>
+
+    </body>
+</html>
